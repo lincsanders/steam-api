@@ -18,7 +18,7 @@ module Steam
     # @see http://wiki.teamfortress.com/wiki/WebAPI/UpToDateCheck
     def self.asset_info(appid, params: {})
       params[:appid] = appid
-      response = client.get 'GetAssetClassInfo/v1',
+      response = client.get 'GetAssetClassInfo/v001',
                  params: params
       parse_response(response)
     end

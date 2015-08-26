@@ -28,7 +28,7 @@ module Steam
     end
 
     def self.received_offers(params: {})
-      self.trade_offers(params: {get_received_offers: 1}).parse_key('trade_offers_recieved')
+      self.trade_offers(params: {get_received_offers: 1}).parse_key('trade_offers_received')
     end
 
     def self.trade_offer(tradeofferid, params: {})
