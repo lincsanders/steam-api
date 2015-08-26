@@ -18,16 +18,17 @@ module Steam
     EMAIL_PENDING   = 9
     EMAIL_CANCELLED = 10
 
-    def self.sent_offers(params: {})
-      params[:get_sent_offers] = 1
+    def self.trade_offers(params: {})
       response = client.get 'GetTradeOffers/v1', params: params
-      response.parse_key('response').parse_key('trade_offers_sent')
+      response.parse_key('response')
+    end
+
+    def self.sent_offers(params: {})
+      self.all_offers(params: {get_sent_offers: 1}).parse_key('trade_offers_sent')
     end
 
     def self.received_offers(params: {})
-      params[:get_received_offers] = 1
-      response = client.get 'GetTradeOffers/v1', params: params
-      response.parse_key('response').parse_key('trade_offers_received')
+      self.all_offers(params: {get_received_offers: 1}).parse_key('trade_offers_recieved')
     end
 
     def self.trade_offer(tradeofferid, params: {})
@@ -39,12 +40,6 @@ module Steam
     def self.decline_trade_offer(tradeofferid, params: {})
       params[:tradeofferid] = tradeofferid
       response = client.get 'DeclineTradeOffer/v1', params: params
-      response.parse_key('response')
-    end
-
-    def self.accept_trade_offer(tradeofferid, params: {})
-      params[:tradeofferid] = tradeofferid
-      response = client.get 'AcceptTradeOffer/v1', params: params
       response.parse_key('response')
     end
 
