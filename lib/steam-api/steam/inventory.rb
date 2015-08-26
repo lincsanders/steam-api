@@ -42,6 +42,12 @@ module Steam
       response.parse_key('response')
     end
 
+    def self.accept_trade_offer(tradeofferid, params: {})
+      params[:tradeofferid] = tradeofferid
+      response = client.get 'AcceptTradeOffer/v1', params: params
+      response.parse_key('response')
+    end
+
     def self.cancel_trade_offer(tradeofferid, params: {})
       params[:tradeofferid] = tradeofferid
       response = client.get 'CancelTradeOffer/v1', params: params
