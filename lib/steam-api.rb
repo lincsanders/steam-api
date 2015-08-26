@@ -15,5 +15,6 @@ require 'steam-api/steam/player'
 require 'steam-api/steam/remote_storage'
 require 'steam-api/steam/user'
 require 'steam-api/steam/user_stats'
+require 'steam-api/steam/inventory'
 
 include Steam::Helpers
