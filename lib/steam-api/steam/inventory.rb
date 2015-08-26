@@ -21,13 +21,13 @@ module Steam
     def self.sent_offers(params: {})
       params[:get_sent_offers] = 1
       response = client.get 'GetTradeOffers/v1', params: params
-      response.parse_key('response')
+      response.parse_key('response').parse_key('trade_offers_sent')
     end
 
     def self.received_offers(params: {})
       params[:get_received_offers] = 1
       response = client.get 'GetTradeOffers/v1', params: params
-      response.parse_key('response')
+      response.parse_key('response').parse_key('trade_offers_received')
     end
 
     def self.trade_offer(tradeofferid, params: {})
