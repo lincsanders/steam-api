@@ -42,13 +42,13 @@ module Steam
     end
 
     # created by github.com/lincsanders
-    def self.community_market_price(appid, name, currency: 1)
-      url = URI.parse("http://steamcommunity.com/market/priceoverview/?appid=#{appid}&currency=#{currency}&market_hash_name=#{name}")
+    def self.community_market_price(appid, market_hash_name, currency: 1)
+      url = URI.parse("http://steamcommunity.com/market/priceoverview/?appid=#{appid}&currency=#{currency}&market_hash_name=#{URI.escape(market_hash_name)}")
       req = Net::HTTP::Get.new(url)
       res = Net::HTTP.start(url.host, url.port) {|http|
         http.request(req)
       }
-      puts res.body
+      JSON.parse(res.body)
     end
 
     private
