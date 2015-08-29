@@ -25,12 +25,12 @@ module Steam
 
     def self.sent_offers(params: {})
       params[:get_sent_offers] = 1
-      self.trade_offers(params).parse_key('trade_offers_sent')
+      self.trade_offers(params: params).parse_key('trade_offers_sent')
     end
 
     def self.received_offers(params: {})
       params[:get_received_offers] = 1
-      self.trade_offers(params).parse_key('trade_offers_received')
+      self.trade_offers(params: params).parse_key('trade_offers_received')
     end
 
     def self.trade_offer(tradeofferid, params: {})
